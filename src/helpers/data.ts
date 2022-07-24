@@ -19,7 +19,7 @@ export const playerInfo = [
     },
     {
         name:'Scarletx',
-        role:'Hard Support • Mapler Mediator',
+        role:'Hard Support • Mapler Mediator • Nitpicker',
         quote: 'Piak Pi.',
         avatar:'https://avatars.akamai.steamstatic.com/026a259093152b53523140c55b6077c263285339_full.jpg'
     },
