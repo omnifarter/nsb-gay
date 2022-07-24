@@ -13,9 +13,12 @@ root.render(
   <React.StrictMode>
     <MantineProvider
       theme={{
+        colorScheme: "dark",
         fontFamily: "Nunito, sans-serif",
         headings: { fontFamily: "Nunito, sans-serif" },
       }}
+      withGlobalStyles
+      withNormalizeCSS
     >
       <NotificationsProvider>
         <App />
