@@ -1,25 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import { Button, Center, Container, Header, Text, Title } from "@mantine/core";
+import { cordialsInvite } from "./helpers/api";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          We are NSB.gay and WE OWN. We have a 10 WIN STREAK (Except Philip)
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <Title align="center" mt="xl">
+        We are NSB.gay and WE OWN. We have a 10 WIN STREAK (Except Philip)
+      </Title>
+      <Center>
+        <Button size="xl" variant="outline" mt="lg" onClick={cordialsInvite}>
+          CORDIALS
+        </Button>
+      </Center>
+    </Container>
   );
 }
 
