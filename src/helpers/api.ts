@@ -10,7 +10,7 @@ export const cordialsInvite = () => {
       "Yes",
       "No",
       "Also Yes but maybe later",
-    ])}`
+    ])}&is_anonymous=false`
   );
   showNotification({
     title: "Message sent!",
