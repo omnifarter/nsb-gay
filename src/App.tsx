@@ -42,9 +42,11 @@ function App() {
           >
             CORDIALS
           </Button>
-          <Text align="center" mt="lg" size="xl">
-            Ready to play the better game?
-          </Text>
+        </Center>
+        <Text align="center" mt="lg" size="xl">
+          Ready to play the better game?
+        </Text>
+        <Center>
           <Button
             fullWidth
             size="xl"
