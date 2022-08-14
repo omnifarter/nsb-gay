@@ -13,7 +13,7 @@ import {
   Transition,
   useMantineColorScheme,
 } from "@mantine/core";
-import { cordialsInvite, getWinStrea, valCordialsInvite } from "./helpers/api";
+import { cordialsInvite, getWinStreak, valCordialsInvite } from "./helpers/api";
 import { TeamCards } from "./components/TeamCards";
 import CountUp from "react-countup";
 import Streak from "./components/Streak";
