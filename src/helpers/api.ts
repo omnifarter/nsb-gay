@@ -20,6 +20,24 @@ export const cordialsInvite = () => {
   // TODO (if i'm not lazy): discord app requires a backend, cannot call request from browser directly.
 };
 
+export const valCordialsInvite = () => {
+  fetch(
+    `https://api.telegram.org/${
+      process.env.REACT_APP_TELEBOT_TOKEN
+    }/sendPoll?chat_id=${
+      process.env.REACT_APP_TELEBOT_CHAT_ID
+    }&question=VAL CORDIALS HAS BEEN SUMMONED&options=${JSON.stringify([
+      "Yes",
+      "No",
+      "Also Yes but maybe later",
+    ])}&is_anonymous=false`
+  );
+  showNotification({
+    title: "Message sent!",
+    message: "Valorant cordials has been summoned.",
+  });
+};
+
 export const getWinStreak = async () => {
   const matches: any[] = await (
     await fetch(`https://api.opendota.com/api/players/162514528/recentMatches`)

@@ -13,7 +13,7 @@ import {
   Transition,
   useMantineColorScheme,
 } from "@mantine/core";
-import { cordialsInvite, getWinStreak } from "./helpers/api";
+import { cordialsInvite, getWinStrea, valCordialsInvite } from "./helpers/api";
 import { TeamCards } from "./components/TeamCards";
 import CountUp from "react-countup";
 import Streak from "./components/Streak";
@@ -41,6 +41,19 @@ function App() {
             onClick={cordialsInvite}
           >
             CORDIALS
+          </Button>
+          <Text align="center" mt="lg" size="xl">
+            Ready to play the better game?
+          </Text>
+          <Button
+            fullWidth
+            size="xl"
+            color="blue"
+            variant="filled"
+            mt="lg"
+            onClick={valCordialsInvite}
+          >
+            VAL CORDIALS
           </Button>
         </Center>
       </Container>
