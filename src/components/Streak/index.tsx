@@ -19,9 +19,11 @@ const Streak: FunctionComponent<StreakProps> = () => {
   const [animateIndex, setAnimateIndex] = useState(0);
   const [animateWinIndex, setAnimateWinIndex] = useState(0);
   const [timer, setTimer] = useState<NodeJS.Timer>();
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     const asyncCall = async () => {
       setStreak(await getWinStreak());
+      setLoading(false);
     };
     asyncCall();
   }, []);
@@ -51,15 +53,19 @@ const Streak: FunctionComponent<StreakProps> = () => {
 
   return (
     <>
-      <Title align="center" mt="xl">
+      <Title align="center" mt="xl" className={loading ? "loading" : ""}>
         NSB is currently on a{" "}
-        <ReactTextTransition inline>
-          {streak.streakArray[animateIndex]}
-        </ReactTextTransition>{" "}
-        <ReactTextTransition inline>
-          {["lost", "win"][animateWinIndex]}
-        </ReactTextTransition>{" "}
-        streak
+        {!loading && (
+          <>
+            <ReactTextTransition inline>
+              {streak.streakArray[animateIndex]}
+            </ReactTextTransition>{" "}
+            <ReactTextTransition inline>
+              {["lost", "win"][animateWinIndex]}
+            </ReactTextTransition>{" "}
+            streak
+          </>
+        )}
       </Title>
     </>
   );

@@ -39,11 +39,20 @@ export const valCordialsInvite = () => {
 };
 
 export const getWinStreak = async () => {
-  const matches: any[] = await (
-    await fetch(`https://api.opendota.com/api/players/162514528/recentMatches`)
-  ).json();
+  //TODO: insert dil's ID.
+  const players = ["162514528","93610202","90314875","60267512","143581614"]
+  const matches = []
+  
+  for await (const player of players) {
+    matches.push(  await (
+        await fetch(`https://api.opendota.com/api/players/${player}/recentMatches`)
+      ).json()
+    )
+  }
+
   // player_slot 0-127 are Radiant, 128-255 are Dire
   // radiant_win
+
   const isWin = (match: any) => {
     if (match.radiant_win) {
       return match.player_slot < 128;
@@ -51,15 +60,62 @@ export const getWinStreak = async () => {
       return match.player_slot > 127;
     }
   };
-  let lostStreak = matches.findIndex(isWin);
-  let winStreak = matches.findIndex((match) => !isWin(match));
 
+  // first we sort players by latest match played.
+  matches.sort((a,b)=>{
+    if(a[0].match_id < b[0].match_id){
+      return 1
+    } else if (a[0].match_id == b[0].match_id){
+      return 0
+    } else{
+      return -1
+    }
+  })
+
+  let playerWinStreaks = []
+  let playerLossStreaks = []
+  
+  for (let i = 0; i < matches.length; i++) {
+    const playerMatches = matches[i];
+    let playerWin = 0
+    let playerLoss = 0
+    for (let j = 0; j < playerMatches.length; j++) {
+      const match = playerMatches[j];
+      if (match.party_size < 4) {
+        break
+      }
+      // first match
+      if(j == 0){
+        isWin(match) ? playerWin+=1 : playerLoss +=1
+      } else {
+        if(playerWin != 0){
+          if (isWin(match)){
+            playerWin += 1
+          } else {
+            break
+          }
+        } else if (playerLoss != 0){
+          if(!isWin(match)){
+            playerLoss += 1
+          } else {
+            break
+          }
+        }
+      }
+    }
+    playerWinStreaks.push(playerWin) 
+    playerLossStreaks.push(playerLoss)
+  }
+
+  // we only use the latest matches as streaks.
+  const longestLossStreak = playerLossStreaks[0]
+  const longestWinStreak = playerWinStreaks[0]
   return {
-    win: lostStreak === 0,
-    streak: lostStreak === 0 ? winStreak : lostStreak,
+    win: longestLossStreak === 0,
+    streak: longestLossStreak === 0 ? longestWinStreak : longestLossStreak,
     streakArray: Array.from(
-      Array(lostStreak === 0 ? winStreak + 1 : lostStreak + 1).keys()
+      Array(longestLossStreak === 0 ? longestWinStreak + 1 : longestLossStreak + 1).keys()
     ),
-    winArray: lostStreak === 0 ? ["loss", "win"] : ["win", "loss"],
+    winArray: longestLossStreak === 0 ? ["loss", "win"] : ["win", "loss"],
   };
 };
