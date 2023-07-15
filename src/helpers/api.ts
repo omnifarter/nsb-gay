@@ -35,7 +35,7 @@ export const climbingInvite= () => {
       "Sat",
       "Sun",
       "Gay"
-    ])}&is_anonymous=false&multiple_choice=true`
+    ])}&is_anonymous=false&allows_multiple_answers=true`
   );
   showNotification({
     title: "Message sent!",
