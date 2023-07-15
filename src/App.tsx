@@ -13,7 +13,7 @@ import {
   Transition,
   useMantineColorScheme,
 } from "@mantine/core";
-import { cordialsInvite, getWinStreak, valCordialsInvite } from "./helpers/api";
+import { climbingInvite, cordialsInvite, getWinStreak, valCordialsInvite } from "./helpers/api";
 import { TeamCards } from "./components/TeamCards";
 import CountUp from "react-countup";
 import Streak from "./components/Streak";
@@ -28,6 +28,21 @@ function App() {
           Active Roster
         </Text>
         <TeamCards />
+        <Text align="center" mt="lg" size="xl">
+          Wanna climb?
+        </Text>
+        <Center>
+          <Button
+            fullWidth
+            size="xl"
+            color="blue"
+            variant="filled"
+            mt="lg"
+            onClick={climbingInvite}
+          >
+            CORDIALS
+          </Button>
+        </Center>
         <Text align="center" mt="lg" size="xl">
           Ready to play some games?
         </Text>

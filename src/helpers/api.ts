@@ -20,6 +20,29 @@ export const cordialsInvite = () => {
   // TODO (if i'm not lazy): discord app requires a backend, cannot call request from browser directly.
 };
 
+export const climbingInvite= () => {
+  fetch(
+    `https://api.telegram.org/${
+      process.env.REACT_APP_TELEBOT_TOKEN
+    }/sendPoll?chat_id=${
+      process.env.REACT_APP_TELEBOT_CHAT_ID
+    }&question=Climb&options=${JSON.stringify([
+      "Mon",
+      "Tues",
+      "Wed",
+      "Thurs",
+      "Fri",
+      "Sat",
+      "Sun",
+      "Gay"
+    ])}&is_anonymous=false&multiple_choice=true`
+  );
+  showNotification({
+    title: "Message sent!",
+    message: "Climbing cordials has been summoned.",
+  });
+};
+
 export const valCordialsInvite = () => {
   fetch(
     `https://api.telegram.org/${
